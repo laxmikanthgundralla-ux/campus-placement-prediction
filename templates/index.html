@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <p class="eyebrow">STUDENT CAREER ASSESSMENT</p>
+            <h1>Placement Prediction</h1>
+            <p class="subtitle">
+                Enter your academic details to receive a placement
+                readiness assessment.
+            </p>
+
+            {% if error %}
+                <div class="error" role="alert">{{ error }}</div>
+            {% endif %}
+
+            <form action="{{ url_for('predict') }}" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cgpa">CGPA (0–10)</label>
+                        <input id="cgpa" name="cgpa" type="number"
+                               min="0" max="10" step="0.01"
+                               placeholder="e.g. 8.2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="backlogs">Active Backlogs</label>
+                        <input id="backlogs" name="backlogs" type="number"
+                               min="0" step="1" placeholder="e.g. 0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="internships">Internships Completed</label>
+                        <input id="internships" name="internships"
+                               type="number" min="0" step="1"
+                               placeholder="e.g. 2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projects">Projects Completed</label>
+                        <input id="projects" name="projects" type="number"
+                               min="0" step="1" placeholder="e.g. 3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aptitude">Aptitude Score (0–100)</label>
+                        <input id="aptitude" name="aptitude" type="number"
+                               min="0" max="100" step="1"
+                               placeholder="e.g. 80" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="communication">
+                            Communication Score (0–100)
+                        </label>
+                        <input id="communication" name="communication"
+                               type="number" min="0" max="100" step="1"
+                               placeholder="e.g. 75" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="certifications">
+                            Certifications Completed
+                        </label>
+                        <input id="certifications" name="certifications"
+                               type="number" min="0" step="1"
+                               placeholder="e.g. 2" required>
+                    </div>
+                </div>
+
+                <button type="submit">Predict Placement →</button>
+            </form>
+
+            <p class="disclaimer">
+                This assessment uses sample development data and is
+                not a guarantee of actual placement outcomes.
+            </p>
+        </section>
+    </main>
+</body>
+</html>

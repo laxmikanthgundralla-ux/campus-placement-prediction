@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <section class="card">
+            <p class="eyebrow">YOUR ASSESSMENT</p>
+            <h1>Placement Prediction Result</h1>
+
+            <div class="result-box">
+                <h2>{{ result.prediction }}</h2>
+
+                <p class="probability">
+                    {{ result.probability }}%
+                </p>
+
+                <p class="subtitle">
+                    Estimated placement likelihood
+                </p>
+
+                <div class="progress-track"
+                     role="progressbar"
+                     aria-label="Estimated placement likelihood"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     aria-valuenow="{{ result.probability }}">
+                    <div class="progress-fill"
+                         style="width: {{ result.probability }}%;">
+                    </div>
+                </div>
+            </div>
+
+            <h3>Readiness Category</h3>
+            <p class="readiness">{{ result.readiness }}</p>
+
+            <h3>Recommendations</h3>
+            <p class="recommendation">{{ result.recommendation }}</p>
+
+            <a class="back-button" href="{{ url_for('home') }}">
+                ← Try Again
+            </a>
+
+            <p class="disclaimer">
+                This result is based on a small sample development dataset.
+                It is experimental and does not represent a validated
+                real-world placement probability.
+            </p>
+        </section>
+    </main>
+</body>
+</html>
